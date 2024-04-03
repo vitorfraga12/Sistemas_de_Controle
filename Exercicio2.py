@@ -20,7 +20,7 @@ plt.ylabel('Amplitude')
 plt.grid(True)
 plt.show()
 
-#ITEM 2
+#ITEM 2.
 alphas = [-1, -5, 0, 5, 7]
 num = []   
 den = [2, 3, 1]
