@@ -11,28 +11,24 @@ from scipy import signal
 s, t = symbols('s t')
 
 A = Matrix([[0, 1], [-5, -2]])
-Is = s * eye(2)
-B = Matrix([0, 2])
-C = Matrix([[1, 0]])
+B = Matrix([[0], [2]])
+C = Matrix([[0, 1]])
+Is = s*eye(2)
 
-#Após declarar as variáveis, podemos calcular a função de transferência:
-G_s = C * (Is - A).inv() * B
+G_s = (C * (Is - A).inv() * B)
 G_s = G_s[0]
-print(f'A função de transferência G(s) = {G_s}')
+print(f'\nA função de transferência do sistema é:\n {G_s}')
 
 #ITEM 2
 #Temos que G(s) = Y(s)/U(s), onde Y(s) é a saída e U(s) é a entrada, fazendo então a separação das variáveis:
-Y_s, U_s = fraction(G_s)
-U_s = simplify(U_s)
-y_t = inverse_laplace_transform(Y_s, s, t)
-u_t = inverse_laplace_transform(U_s, s, t)
-print(f'\nTemos então que o modelo entrada-saída do sistema é:\n {y_t} = {u_t}')
+g_t = inverse_laplace_transform(G_s, s, t)
+print(f'\nTemos então que o modelo entrada-saída do sistema é:\n {g_t}')
 
 #ITEM 3
 #Para encontrar a resposta a u(t) =  e^(−3t)*δ(t)
-#Sabemos que G(s) = -10/(-5*s**2 -10*s - 25)
-num = [-10]
-den = [-5, -10, -25]
+#Sabemos que G(s) = 2*s/(s**2 + 2*s + 5)
+num = [2, 0]
+den = [1, 2, 5]
 sys = signal.TransferFunction(num, den)
 t, y = signal.impulse(sys)
 y_respot = y * np.exp(-3*t)
