@@ -4,7 +4,7 @@ import numpy as np
 #ITEM 3
 #Para encontrar a resposta a u(t) =  e^(−3t)*δ(t)
 #Sabemos que G(s) = -10/(-5*s**2 -10*s - 25)
-num = [4,15]
+num = [4,15,19]
 den = [1,2,1,0]
 sys = signal.TransferFunction(num, den)
 t, y = signal.impulse(sys)
