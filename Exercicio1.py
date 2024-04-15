@@ -18,3 +18,4 @@ f4 = inverse_laplace_transform(F4, s, t)
 # Imprimir o resultado
 print(f'Temos que as transformadas inversas de Laplace são:\n f1(t) = {f1} \n f2(t) = {f2} \n f3(t) = {f3} \n f4(t) = {f4}')
 
+
