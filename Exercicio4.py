@@ -26,15 +26,16 @@ print(f'\nTemos então que o modelo entrada-saída do sistema é:\n {g_t}')
 
 #ITEM 3
 #Para encontrar a resposta a u(t) =  e^(−3t)*δ(t)
-#Sabemos que G(s) = 2*s/(s**2 + 2*s + 5)
+#Sabemos que G(s) = 2*s/(s**2 + 2*s + 5), quando multiplicamos por U(s) = 1/s + 3, temos que Y(s) = 2*s/(s**2 + 2*s + 5) * 1/(s+3)
+#Logo Y(s) = 2*s/(s**3 + 5*s**2 + 11*s + 15)
+
 num = [2, 0]
-den = [1, 2, 5]
+den = [1, 5, 11, 15]
 sys = signal.TransferFunction(num, den)
 t, y = signal.impulse(sys)
-y_respot = y * np.exp(-3*t)
 
 plt.figure()
-plt.plot(t, y_respot, label='y(t)')
+plt.plot(t, y, label='y(t)')
 plt.xlabel('Tempo (s)')
 plt.ylabel('y(t)')
 plt.title('Saída y(t) em resposta a u(t) = e^(-3t)*δ(t)')
