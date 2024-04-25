@@ -1,7 +1,23 @@
 from scipy import signal
 import matplotlib.pyplot as plt
 from sympy import symbols, inverse_laplace_transform, exp
+import numpy as np
 
+#Item II
+t = np.linspace(0, 7, 100)
+y1 = np.exp(-t)
+y2 = t * np.exp(-t)
+
+# Plotando os gráficos dos modos do sistema
+plt.figure()
+plt.plot(t, y1, label='e^-t')
+plt.plot(t, y2, label='t*e^-t')
+plt.xlabel('t')
+plt.ylabel('y')
+plt.legend()
+plt.grid(True)
+
+#Item IV
 # Definindo as variáveis "t" no domínio do Tempo e "s" no domínio de Laplace
 s, t = symbols('s t')
 
@@ -16,7 +32,7 @@ print(f'Temos que as transformadas inversas de Laplace são:\n f1(t) = {f1}')
 ##############################################################
 
 num = [4,15,19]
-den = [1,2,1]
+den = [1,2,1,0]
 sys = signal.TransferFunction(num, den)
 t, y = signal.impulse(sys)
 
